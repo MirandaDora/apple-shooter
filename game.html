@@ -1,0 +1,145 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>treeMove_demo</title>
+<style type="text/css">
+#info {
+	background-image: url(images/info.png);
+	background-repeat: repeat;
+	margin-top: 5px;
+	margin-left: 30px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+}
+#result {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #FFF;
+	background-color: #999;
+	position: absolute;
+	height: auto;
+	width: auto;
+	left: 40%;
+	top: 30%;
+	border: thin dotted #333;
+	clip: rect(1px,auto,auto,auto);
+	filter: DropShadow(Color=#FFF, OffX=10, OffY=10, Positive=1);
+}
+.blood {
+	overflow: visible;
+	height: 30px;
+	width: auto;
+	clear: none;
+	float: none;
+	clip: rect(auto,auto,auto,auto);
+	z-index: auto;
+	top: 0px;
+	color: #FFF;
+}
+</style>
+</head>
+
+<body >
+<img id="top" src="images/top_leaf.png" style=" margin-left:-100; margin-top:-40; position:fixed;overflow:visible; z-index:10;"  />
+<img id="top_sha" src="images/top_leaf_shadow.png" style=" margin-left:-60; margin-top:-40; position:fixed;overflow:visible; z-index:50;"  />
+<div id="scene" style="zoom:100%;" >
+<img id="bg" src="images/bj.jpg" style="top:0; z-index:0; margin-left:0; margin-bottom:0; position:fixed;overflow:visible; vertical-align:bottom;"  />
+<img id="tree_1_1" src="images/tree_big.png" style="top:0; z-index:5; margin-left:-200; margin-top:-20;left:0; position:fixed;overflow:hidden;"  />
+<img id="tree_1_2" src="images/tree_big_leaf.png" style="top:0; z-index:30; margin-left:-200;margin-top:-20;left:0; position:fixed; opacity:1;overflow:hidden;"  />
+<img id="tree_2_1" src="images/tree_big.png" style="top:0; z-index:6; margin-left:600;margin-top:-20; position:fixed; opacity:1; overflow:hidden;"  width="1094"/>
+<img id="tree_2_2" src="images/tree_big_leaf.png" style=" z-index:31; margin-left:600;margin-top:-20; position:fixed; opacity:0.8;overflow:hidden;" width="1094"/>
+<img id="tree_3_1" src="images/tree_big.png" style="top:0; z-index:2; margin-left:-500;margin-top:-20; position:fixed; opacity:1; overflow:hidden; "  width="1094" />
+
+
+<img id="gun" src="images/gun.png" style=" z-index:253; vertical-align:central;  position:fixed;  opacity:1;overflow:visible;"/>
+
+
+<img id="outofservice" src="images/outofservice.png" style="top:0; z-index:500; margin-left:-35;margin-top:-10; position:fixed; opacity:1; visibility:hidden;" />
+
+</div>
+<!--the farest layer of trees, barely moves-->
+<table id="info"   border="0" style="z-index:1000; position:absolute;">
+  <tr>
+    <td>Life:</td>
+    <td width="281">
+    
+    <div class="blood">
+    <img src="images/lifebar_back.png" height="30" style="z-index:1002; position:absolute;"><img id="score" src="images/lifebar_front.png" height="30" style="z-index:1001; position:fixed;">
+    </div></td>
+    <td width="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Apple:</td>
+    <td width="49"><b id="apple_collected">0</b></td>
+    <td width="49">&nbsp;</td>
+  </tr>
+  
+</table>
+
+<table id="result" width="200" border="0" style="visibility:hidden; z-index:2001;">
+<tr>
+    <td id="win_loose">Your highest score</td>
+  </tr>
+<tr>
+    <td>Your highest score</td>
+  </tr>
+<tr>
+    <td>No.1</td>
+    <td id="rank0">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>No.2</td>
+    <td id="rank1">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>No.3</td>
+    <td id="rank2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>No.4</td>
+    <td id="rank3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>No.5</td>
+    <td id="rank4">&nbsp;</td>
+  </tr>
+  <tr style="border:thin; border-color:#333;">
+    <td>current result:</td>
+    <td id="current_result">&nbsp;</td>
+  </tr>
+  <tr style="border:thin; border-color:#333;">
+    <td><a href="game.html"><img src="images/resume.png"></a></td>
+    <td ><a href="index.html"><img src="images/close.png" ></a></td>
+  </tr>
+</table>
+<p>
+</body>
+<script language="javascript">
+//set texts:
+document.getElementById("bg").width=document.body.clientWidth+200;
+document.getElementById("top").width=document.body.clientWidth+120;
+document.getElementById("bg").height=document.body.clientHeight+100;
+document.getElementById("tree_1_1").height=document.body.clientHeight+70;
+document.getElementById("tree_1_2").width=Math.floor(document.body.clientWidth/1.5);
+document.getElementById("tree_1_2").height=Math.floor(document.body.clientHeight/1.2);
+document.getElementById("tree_2_1").height=document.body.clientHeight+70;
+document.getElementById("tree_3_1").height=document.body.clientHeight+80;
+document.getElementById("tree_2_2").height=document.body.clientHeight;
+document.getElementById("tree_2_2").width=Math.floor(document.body.clientWidth/1.3);
+
+//out of service
+document.getElementById("outofservice").height=document.body.clientHeight;
+document.getElementById("outofservice").width=document.body.clientWidth;
+</script>
+<script language="javascript" src="treedemo.js">
+</script>
+<script language="javascript" src="slids.js">
+</script>
+<script language="javascript" src="outofservice.js">
+</script>
+</html>

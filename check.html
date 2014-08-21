@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+<body>
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Welcome!</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="check.html">Check Browser</a></li>
+            <li><a href="instruction.html">Instructions</a></li>
+            <li><a href="game.html">Play</a></li>
+          <script language="javascript">
+		  function returning_visitor()
+	{
+		var co=getCookie("shooting_apple_rank0");
+		if(co!=null){ console.log(co);return true;}
+		else
+		{
+		return false;//not a returning visitor
+		}
+	}
+	function getCookie(c_name)
+	{
+	if (document.cookie.length>0)
+ 	 {
+		 console.log("not null"); 
+  		c_start=document.cookie.indexOf(c_name + "=");
+  		if (c_start!=-1)
+    	{ 
+    	c_start=c_start + c_name.length+1 ;
+    	c_end=document.cookie.indexOf(";",c_start);
+   		 if (c_end==-1) c_end=document.cookie.length;
+    	return document.cookie.substring(c_start,c_end);
+   		 } 
+ 	 }
+	return null;
+	}
+		   var returning=returning_visitor();
+		   if(returning)document.write("<li><a href='highscore.html'>High Score</a></li>");
+
+</script>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+  </div>
+  <!--end of nav-->
+<p><img src="images/gun.png" id="gun" style="position:fixed; z-index:10; opacity:0.7"/>
+  <img src="images/balloon.png" width="68" id="balloon" style="position:fixed; z-index:0; opacity:0.9" /></p>
+   <div class="container">
+  <div class="row">
+        <div class="col-lg-4">
+          <h2>1. xLabs Installation</h2>
+          <li>Can you control the circle by moving your heads?
+    <blockquote>
+      <p>If you can't, xLabs is not installed correctlly. Follow the link to reinstall:</p>
+    </blockquote>
+  </li>
+
+          <p><a class="btn btn-primary" href="www.xlabs.com.au" role="button">Install xLabs &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>2. Calibration</h2>
+          <li><p>Can you aim at the balloon if you do not move your head?.</p></li>
+           <blockquote>
+      <p>If you can't, your camera's position is not right in front of your face, adjust your own position or the camera's position untill you can aim at the balloon comfortably..</p>
+          <p>&nbsp;</p>
+       </div>
+       <div class="col-lg-4">
+          <h2>3. All Done!</h2>
+          <li>You have xLabs installed correctly</li>
+          <li>You are sitting infront of the camera.</li>
+           <blockquote>
+      <p>Now you are ready to shoot the apples, get ready and click the button:</p>
+          <p><a class="btn btn-primary" href="game.html" role="button">Play &raquo;</a></p>
+       </div>
+     </div>
+
+      <!-- Site footer -->
+</div>
+    </div> 
+    <!-- /container -->
+</body>
+<script language="javascript">
+
+var sdkDemo = {
+	sx : -1,
+	sy : -1,
+	sz : -1,
+    documentOffsetX : 0, // offset of HTML document origin from screen origin
+    documentOffsetY : 0,
+
+    setup : function() {
+		var balloon=document.getElementById("balloon");
+	console.log(document.getElementById("balloon").width);
+     document.getElementById("balloon").style.left=Math.round(document.body.clientWidth/2-34)+"px";
+	 balloon.style.top=Math.round(document.documentElement.clientHeight/2-60)+"px";
+    },
+
+    onApiState : function( state ) {
+		
+    var x = state.kvHeadX;
+	var y = state.kvHeadY;
+	var z = state.kvHeadZ;
+		
+		var alpha = 0.6;
+			this.sx = x;
+			this.sy = y;
+		this.sz = z;
+	
+		this.sx = alpha * this.sx + (1-alpha) * x;
+		this.sy = alpha * this.sy + (1-alpha) * y;
+		this.sz = alpha * this.sz + (1-alpha) * z;
+
+		//drawGun(this.gun, this.sx, this.sy, this.gun.z, this.gun.length, Math.round(z*100));
+	var faceX=this.sx;
+	var faceY=this.sy;
+
+	
+	var scaleW=Math.floor((document.body.clientWidth/5000)*12);
+	var scaleH=Math.floor((document.documentElement.clientHeight/3000)*10);
+	var delta_fx=faceX;
+	var delta_fy=faceY;
+	var res_left;
+	var res_top;
+	if(delta_fx>=0){
+		//delta_fx>0, the head is moving to the left, so the left value should be reduced!
+	res_left=Math.abs(Math.abs(delta_fx*scaleW)*100-document.body.clientWidth/2);
+	}
+	else{
+		res_left=Math.abs(Math.abs(delta_fx*scaleW)*100+document.body.clientWidth/2);
+		}
+	if(delta_fy>=0){
+	res_top=Math.abs(Math.abs(delta_fy*scaleH)*100+document.body.clientHeight/2);}
+	else{
+		res_top=Math.abs(Math.abs(delta_fy*scaleH)*100-document.body.clientHeight/2);
+		}
+console.log(document.documentElement.clientHeight);
+	document.getElementById("gun").style.left=Math.round(res_left)+"px";
+	document.getElementById("gun").style.top=Math.round(res_top)+"px";
+    },
+	
+
+
+    onApiReady : function() {
+     window.postMessage( {target:"xLabs", payload:{overlayEnabled:0}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{overlayMode:0}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{clicksEnabled:0}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{trackingEnabled:1}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{trackMouse:0}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{pinpointEnabled:0}}, "*" );
+    window.postMessage( {target:"xLabs", payload:{realtimeEnabled:1}}, "*" );
+    }
+  };
+
+  document.addEventListener( "xLabsApiReady", function() {
+    sdkDemo.onApiReady();
+  } );
+
+  document.addEventListener( "xLabsApiState", function( event ) {
+    sdkDemo.onApiState( event.detail );
+  } );
+  sdkDemo.setup();
+
+</script>
+</html>

@@ -1,0 +1,168 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>treeMove_demo</title>
+<style type="text/css">
+#info {
+	background-image: url(images/info.png);
+	background-repeat: repeat;
+	margin-top: 5px;
+	margin-left: 30px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+}
+#ranking {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFF;
+	position: fixed;
+	height: auto;
+	left: 35%;
+	top: 20%;
+	clip: rect(1px,auto,auto,auto);
+	filter: DropShadow(Color=#FFF, OffX=10, OffY=10, Positive=1);
+	visibility: visible;
+	z-index: 2000;
+	line-height: 50px;
+	background-image: url(images/info.png);
+	text-align:center;
+	vertical-align: top;
+	padding: 3px;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: none;
+	border-left-style: solid;
+	border-top-color: #333;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-color: #333;
+	margin: 10px;
+}
+.table_line {
+	vertical-align: top;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000;
+	border-right-color: #000;
+	border-bottom-color: #000;
+	border-left-color: #000;
+	margin-top: 5px;
+	padding-top: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.blood {
+	overflow: visible;
+	height: 30px;
+	width: auto;
+	clear: none;
+	float: none;
+	clip: rect(auto,auto,auto,auto);
+	z-index: auto;
+	top: 0px;
+	color: #FFF;
+}
+</style>
+</head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+<body >
+
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Welcome!</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="check.html">Check Browser</a></li>
+            <li><a href="instruction.html">Instructions</a></li>
+            <li><a href="game.html">Play</a></li>
+            <li class='active'><a href='highscore.html'>High Score</a></li>
+          
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+  </div>
+
+<div id="scene" style="zoom:100%;" >
+<img id="bg" src="images/bj.jpg" style="top:0; z-index:10; margin-left:-50; margin-bottom:0; position:fixed;overflow:visible; vertical-align:bottom;"  />
+
+
+</div>
+<!--the farest layer of trees, barely moves-->
+
+
+<table align="left" cellspacing="0" id="ranking" style="z-index:2001;" width="200px">
+<tr>
+    <td colspan="2">Your High Scores</td>
+  </tr>
+<tr>
+    <td class="table_line">No.1 </td>
+    <td id="rank0" class="table_line">
+     </td>
+  </tr>
+  <tr>
+    <td class="table_line">No.2 </td>
+    <td id="rank1" class="table_line">
+    </td>
+  </tr>
+  <tr>
+    <td class="table_line">No.3 </td>
+    <td id="rank2" class="table_line">
+  </tr>
+  <tr>
+    <td class="table_line">No.4 </td>
+    <td id="rank3" class="table_line">
+  </tr>
+  <tr>
+    <td class="table_line">No.5 </td>
+    <td id="rank4" class="table_line">
+  </tr>
+  
+ 
+  
+</table>
+<p>
+</body>
+<script language="javascript">
+//set texts:
+
+document.getElementById("bg").height=document.body.clientHeight+100;
+
+
+//the table's position
+var w=document.getElementById("ranking").offsetWidth/2;
+var h=document.getElementById("ranking").offsetHeight/2;
+document.getElementById("ranking").style.top=document.body.clientHeight/2-h;
+document.getElementById("ranking").style.left=document.body.clientWidth/2-w;
+console.log(document.getElementById("ranking").style.width);
+</script>
+<script language="javascript" src="highscore.js"></script>
+
+</html>
